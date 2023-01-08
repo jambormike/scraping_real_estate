@@ -7,17 +7,15 @@ services:
   #     - 8080:8080
 
   backend:
-    # depends_on:
-    #   - database
+    depends_on:
+      - database
     build: ./backend
     ports:
       - 3000:3000
+    environment: 
+      DB_URL: postgresql://postgres:postgres@database:5432/postgres
 
-    environment:
-      - database=database
-
-    # networks:
-    #   - app-tier
+      # postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 
   database:
     build: ./database
@@ -25,9 +23,3 @@ services:
     ports:
       - 5432:5432
 
-    # networks:
-    #   - app-tier
-
-# networks:
-#   app-tier:
-#     driver: bridge

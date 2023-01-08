@@ -1,14 +1,6 @@
 import scrapy
 from sreality_5.items import SrealityItem
 
-# too many urls. Defaultly, if Playwright library runs for >30s it shuts down and prints
-# TimeoutError: Timeout 30000ms exceeded.
-# I had to rewrite its source code in
-# "/opt/anaconda3/envs/scrapy-env/lib/python3.11/site-packages/playwright/async_api/_generated.py", line 8913,
-# and change it from 'timeout=timeout' to 'timeout=0 so that it can run many sreality urls.
-        
-# Apparently, this can be also changed using: "browser_context.set_default_navigation_timeout()" as stated in the file referenced above.
-
 ### URLS LIST SOLUTION
 ##################
 class FlatSpider(scrapy.Spider):
@@ -99,7 +91,7 @@ class FlatSpider(scrapy.Spider):
 #             #         "properties_count": properties_count,
 #             #         "parse_count": parse_count})
 
-#         print("LEAVING PARSE N." + str(parse_count))        # I don't understad why this is not all printed out in the end when all the recursions surface out
+#         print("LEAVING PARSE N." + str(parse_count))        # I don't understad why this is not all printed out in the end when all the recursions surfaces out?
 
     # async def errback(self, failure):
     #     page = failure.request.meta["playwright_page"]
