@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - 8080:8080
+
+  backend:
+    # depends_on:
+    #   - database
+    build: ./backend
+    ports:
+      - 3000:3000
+
+    environment:
+      - database=database
+
+    # networks:
+    #   - app-tier
+
+  database:
+    build: ./database
+    restart: always
+    ports:
+      - 5432:5432
+
+    # networks:
+    #   - app-tier
+
+# networks:
+#   app-tier:
+#     driver: bridge
